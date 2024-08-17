@@ -1,0 +1,33 @@
+:root {
+  --color-background: #ececec;
+  --color-href: #2f2f3d;
+  --color-active: #1f75cb;
+  --color-background-active: rgba(31, 30, 36, 0.08);
+  --box-shadow: 0 2rem 3rem rgb(132, 139, 200, 0.18);
+  --faint: #646464;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  text-decoration: none;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  user-select: none;
+  overflow-x: hidden;
+  background-color: var(--color-background);
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;}
+
+
+
+

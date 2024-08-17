@@ -1,0 +1,13 @@
+<link rel="stylesheet" type="text/css" href="/css/bundle.style2.min.css" />
+<div class="searchbar-container">
+    <div class="search-bar">
+        <label>
+            <input id="search-query" class="search-query" type="search" name="search" placeholder="Search..."
+                   hx-get="?render=partial&state=<%= state %>"
+                   hx-include="#test"
+                   hx-trigger="input changed delay:400ms, search"
+                   hx-target="#content"
+                   hx-swap="innerHTML" >
+        </label>
+    </div>
+</div>

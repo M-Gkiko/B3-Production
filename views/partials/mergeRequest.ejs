@@ -1,0 +1,87 @@
+<link rel="stylesheet" type="text/css" href="/css/issue.css" />
+<div class="issue-container">
+    <div>
+        <h1 class="issue-title"><%= content.mergeRequest.title %></h1>
+    </div>
+    <div class="issue-info">
+        <span class="state <%= content.mergeRequest.state %>"><%= content.mergeRequest.state %></span>
+        <span> request to merge </span>
+        <span class="branches"> <%= content.mergeRequest.sourceBranch %></span>
+        <span>into</span>
+        <span class="branches"> <%= content.mergeRequest.targetBranch %></span>
+        <time class="timestamp" datetime="<%= content.mergeRequest.createdAt %>"><%= content.mergeRequest.createdAt %></time>
+        <span> by </span>
+        <div class="name"><%= content.mergeRequest.name %></div>
+    </div>
+    <div class="issue-label">
+        <% if (content.mergeRequest.labels && content.mergeRequest.labels.length > 0) { %>
+            <% content.mergeRequest.labels.forEach(label => { %>
+                <span class="label" style="background-color: <%= label.color %>; color: <%= label.text_color %>;">
+                <%= label.name %>
+            </span>
+            <% }) %>
+        <% } %>
+    </div>
+    <div class="description">
+        <p class=""><%- content.mergeRequest.description%></p>
+    </div>
+
+    <div class="person-container">
+        <div class="section">
+            <div class="title">
+                <h2>Assignees</h2>
+            </div>
+            <div class="assignees">
+                <% content.mergeRequest.assignees.forEach(assignee => { %>
+                    <div class="person">
+                        <img class="user-avatar" src="<%= assignee.avatar_url %>" alt="Avatar" />
+                        <%= assignee.name %>,
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+        <div class="section">
+            <div class="title">
+                <h2>Reviewers</h2>
+            </div>
+            <div class="reviewers">
+                <% content.mergeRequest.reviewers.forEach(reviewer => { %>
+                    <div class="person">
+                        <img class="user-avatar" src="<%= reviewer.avatar_url %>" alt="Avatar" />
+                        <%= reviewer.name %>,
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+
+    <div class="title">
+        <h2 style="margin-top: 1rem"> Activity </h2>
+    </div>
+    <div hx-ext="ws" ws-connect="/merge_requests/<%= content.mergeRequest.projectId %><%= content.mergeRequest.id %>">
+    <ul class="note-thread" id="note-thread">
+        <% content.mergeRequestNotes.forEach(note => { %>
+            <%- include('../partials/note.ejs', {note, displayName}) %>
+        <% }); %>
+    </ul>
+    </div>
+    <link rel="stylesheet" type="text/css" href="/css/mdeditor.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <form id="comment-form"
+            hx-target="#note-thread"
+            hx-swap="beforeend"
+            hx-post="<%= content.mergeRequest.id %>/notes"
+            hx-ext="json-enc"
+    >
+        <div class="comment">
+            <label for="markdown-textarea"></label>
+            <textarea id="markdown-textarea" name="noteContent"></textarea>
+        </div>
+        <div class="button-container">
+            <button id="comment-button" type="submit">Comment</button>
+        </div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="/js/simplemde-init.min.js"></script>
+</div>
+

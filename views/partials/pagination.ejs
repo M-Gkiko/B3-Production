@@ -1,0 +1,49 @@
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <% if (content.prevPage) { %>
+            <li class="page-item">
+                <a class="page-link"
+                   hx-trigger="click"
+                   hx-get="?page=<%= content.prevPage %>&render=partial&state=<%= state %>"
+                   hx-target="#content"
+                   htmx-indicator="#indicator"
+                >Previous</a>
+            </li>
+        <% } else { %>
+            <li class="page-item disabled">
+                <a class="page-link">Previous</a>
+            </li>
+        <% } %>
+        <% content.paginationRange.forEach(page => { %>
+            <% if (parseInt(page) === parseInt(content.currentPage)) { %>
+                <li class="page-item active">
+                    <a class="page-link"><%= page %></a>
+                </li>
+            <% } else { %>
+                <li class="page-item">
+                    <a class="page-link"
+                       hx-trigger="click"
+                       hx-get="?page=<%= page %>&render=partial&state=<%= state %>"
+                       hx-target="#content"
+                       htmx-indicator="#indicator"
+                    ><%= page %></a>
+                </li>
+            <% } %>
+        <% }); %>
+
+        <% if (content.nextPage) { %>
+            <li class="page-item">
+                <a class="page-link"
+                   hx-trigger="click"
+                   hx-get="?page=<%= content.nextPage %>&render=partial&state=<%= state %>"
+                   hx-target="#content"
+                   htmx-indicator="#indicator"
+                >Next</a>
+            </li>
+        <% } else { %>
+            <li class="page-item disabled">
+                <a class="page-link">Next</a>
+            </li>
+        <% } %>
+    </ul>
+</nav>

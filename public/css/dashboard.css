@@ -1,0 +1,56 @@
+.container {
+    display:grid;
+    width: 100%;
+    margin: 0 auto;
+    gap: 1.7rem;
+    grid-template-columns: 13rem auto 22rem;
+}
+
+.content-title {
+    margin-top: 4.2rem;
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.top{
+    background-color: var(--color-background);;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+aside {
+    height: 100vh;
+}
+
+.right .top .profile{
+    display: flex;
+    gap: 1rem;
+    text-align: right;
+    margin-top: 0.7rem;
+    margin-bottom: 2rem;
+}
+
+.user-info{
+    margin-top: 0.5rem;
+
+}
+
+.user-avatar img {
+    height: 2rem;
+    width: 2rem;
+    margin-right: 2rem;
+
+}
+
+.right-end .top {
+    display: flex;
+    justify-content: end;
+    gap: 2rem;
+    background-color: var(--color-background);
+}
+
+.right-end .top button {
+    display: none;
+}

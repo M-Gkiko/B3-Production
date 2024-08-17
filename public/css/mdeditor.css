@@ -1,0 +1,42 @@
+.CodeMirror {
+    min-height: 140px;
+    width: calc(100% - 20px);
+    height: 140px;
+    border: 1px solid black;
+    border-top: var(--faint);
+    box-shadow: var(--box-shadow);
+}
+
+.editor-toolbar {
+    opacity: unset;
+    border: 1px solid black;
+    border-bottom: 1px solid var(--faint);
+    width: calc(100% - 20px);
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    margin-top: 2rem;
+}
+
+.issue-container button {
+    background-color: white;
+    border: 1px solid var(--faint);
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.issue-container button.blue-button {
+    background-color: #4242fa;
+    color: white;
+    border-color: blue;
+}
+
+#close-issue-button:hover {
+    background-color: var(--faint);
+    color: white;
+}

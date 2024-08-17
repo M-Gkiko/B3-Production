@@ -1,0 +1,54 @@
+{
+  "name": "b3production",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.mjs",
+  "scripts": {
+    "devStart": "node bundle-css.js && npx nodemon app.mjs",
+    "start": "npx nodemon app.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "htmlhint": "npx htmlhint ./public || exit 0",
+    "stylelint": "npx stylelint \"./public/**/*.css\" || exit 0",
+    "stylelint:fix": "npx stylelint --fix \"./public/**/*.css\" || exit 0",
+    "eslint": "npx eslint backend --ext .mjs || exit 0",
+    "eslint:fix": "npx eslint backend --ext .mjs --fix || exit 0",
+    "jsdoc": "npx jsdoc -c .jsdoc.json || exit 0",
+    "lint": "npm run htmlhint && npm run stylelint && npm run eslint",
+    "clean": "rm -rf build/",
+    "clean-all": "npm run clean && rm -rf node_modules/ && rm -f package-lock.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:M-Gkiko/B3Production.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.35.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsdoc": "^40.0.0",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "htmlhint": "^1.1.4",
+    "jsdoc": "^4.0.2",
+    "nodemon": "^3.1.0",
+    "stylelint": "^15.2.0"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.19.2",
+    "express-session": "^1.17.3",
+    "express-ws": "^5.0.2",
+    "helmet": "^7.0.0",
+    "isomorphic-dompurify": "^2.11.0",
+    "morgan": "^1.10.0",
+    "passport": "^0.7.0",
+    "passport-gitlab2": "^5.0.0",
+    "showdown": "^2.1.0"
+  }
+}

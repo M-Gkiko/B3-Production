@@ -1,0 +1,64 @@
+<link rel="stylesheet" type="text/css" href="/css/issue.css" />
+<div class="issue-container">
+    <div>
+        <h1 class="issue-title"><%= content.issue.title %></h1>
+    </div>
+    <div class="issue-info">
+        <span class="state <%= content.issue.state %>"><%= content.issue.state %></span>
+        <span> issue created </span>
+        <time class="timestamp" datetime="<%= content.issue.createdAt %>"><%= content.issue.createdAt %></time>
+        <span> by </span>
+        <div class="name"><%= content.issue.name %></div>
+    </div>
+    <div class="issue-label">
+        <% if (content.issue.labels && content.issue.labels.length > 0) { %>
+            <% content.issue.labels.forEach(label => { %>
+                <span class="label" style="background-color: <%= label.color %>; color: <%= label.text_color %>;">
+                <%= label.name %>
+            </span>
+            <% }) %>
+        <% } %>
+    </div>
+    <div class="description">
+        <p class=""><%- content.issue.description%></p>
+    </div>
+    <div class="title"> <h2>Assignees</h2></div>
+    <div class="assignees">
+        <% content.issue.assignees.forEach(assignee => { %>
+            <div class="person">
+                <img class="user-avatar" src="<%= assignee.avatar_url %>" alt="Avatar" />
+                <%= assignee.name %>,
+            </div>
+        <% }); %>
+    </div>
+    <div class="title">
+        <h2> Activity </h2>
+    </div>
+    <div hx-ext="ws" ws-connect="/issues/<%= content.issue.projectId %><%= content.issue.id %>">
+        <ul class="note-thread" id="note-thread">
+            <% content.issueNotes.forEach(note => { %>
+                <%- include('../partials/note.ejs', {note, displayName}) %>
+            <% }); %>
+        </ul>
+    </div>
+    <link rel="stylesheet" type="text/css" href="/css/mdeditor.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <form id="comment-form"
+            hx-target="#note-thread"
+            hx-swap="beforeend"
+            hx-post="<%= content.issue.id %>/notes"
+            hx-ext="json-enc"
+    >
+        <div class="comment">
+            <label for="markdown-textarea"></label>
+            <textarea id="markdown-textarea" name="noteContent"></textarea>
+        </div>
+        <div class="button-container">
+            <button id="comment-button" type="submit">Comment</button>
+            <button id="close-issue-button" hx-put="<%= content.issue.id %>?state=close" hx-trigger="click">Close Issue</button>
+        </div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="/js/simplemde-init.min.js"></script>
+</div>
+

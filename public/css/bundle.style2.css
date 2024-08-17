@@ -1,0 +1,275 @@
+.search-bar {
+    width: 100%;
+    border: 1px solid #656464;
+    border-radius: 10rem;
+
+}
+
+.search-bar input.search-query {
+    padding: 10px;
+    margin-right: 10px;
+    width: 100%;
+    border-radius: 10rem;
+}
+
+.searchbar-container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.htmx-indicator {
+    display: none;
+    margin-left: 10px;
+}
+.htmx-indicator .htmx-request {
+    display: inline-block;
+}
+
+list {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1rem;
+}
+
+.row {
+    background-color: white;
+    border-radius: 0.3rem;
+    overflow: hidden;
+    line-height: 1.7;
+    display: flex;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--box-shadow);
+}
+
+.grid{
+    padding: 0;
+}
+
+.column {
+}
+
+.column img {
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+}
+
+.main {
+    flex: 1 auto;
+    margin-right: 10px;
+    min-width: 0;
+}
+
+.main-info {
+    display: flex;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.visibility {
+    margin-left: 0.2rem;
+    margin-right: 0.3rem;
+}
+
+.role {
+    margin-left: 0.2rem;
+    margin-right: 0.4rem;
+    margin-bottom: 0.2rem;
+    font-size: 0.70rem;
+    background-color: #fff8f8;
+    box-shadow: inset 0 0 0 1px #dcdcde;
+    border: none;
+    color: black;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10rem;
+}
+
+.row a {
+    text-decoration: none;
+    color: var(--color-href);
+}
+
+.row a:hover {
+    text-decoration: underline;
+}
+
+.project-img {
+    border-radius: 2rem;
+    background-color: #e3e3f6;
+    text-align: center;
+    vertical-align: top;
+    color: #333238;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    font-size: 1rem;
+    display: inline-flex;
+    overflow: hidden;
+    line-height: 1;
+    object-fit: contain;
+    outline: 1px solid grey;
+    outline-offset: -1px;
+    margin-right: 0.4rem;
+}
+
+.meta-info {
+    display: flex;
+}
+
+.meta {
+    display: flex;
+    height: 5.5rem;
+}
+
+.meta-info svg {
+    margin-right: 8px;
+}
+
+.meta-info .info {
+    margin-right: 3px;
+}
+
+.visibility svg {
+    padding-left: 3px;
+    padding-right: 1px;
+}
+
+.timestamp, .usr-name {
+    padding-left: 5px;
+    font-style: italic;
+}
+
+.usr-name {
+    font-weight: 400;
+}
+
+.references {
+  color: var(--faint);;
+}
+
+.icon {
+    margin-left: 0.3rem;
+}
+
+.label, .state {
+    margin-bottom: 2rem;
+    padding: 1px 6px;
+    border-radius: 10px;
+}
+
+.issue-name {
+
+}
+
+.target-branch {
+    display: flex;
+    margin-left: 5px;
+}
+
+.branch {
+    margin-left: 3px;
+}
+
+.opened {
+    background-color: #3df380;
+}
+
+.closed {
+    background-color: #ff3434;
+}
+
+.merged {
+    background-color: #7bb3ff;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    display: block;
+    padding: 8px 16px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: #333;
+    border-radius: 5px;
+}
+
+.page-link:hover {
+    background-color: #f0f0f0;
+}
+
+.page-item.disabled .page-link {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.page-item.active .page-link {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}

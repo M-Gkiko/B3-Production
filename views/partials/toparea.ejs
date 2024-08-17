@@ -1,0 +1,77 @@
+<div class="top-area">
+    <nav class="issues-nav">
+        <% if (title === "Projects") { %>
+            <h3>Yours</h3>
+            <span class="total"> <%= content.total %> </span>
+        <% } else if (title === "Issues") { %>
+            <div class="nav-item-container <%= activeItem === 'opened' ? 'active' : '' %>">
+                <div class="nav-item" hx-get="?state=opened" hx-target="#content-container" hx-swap="outerHTML" >
+                    <h3>Open</h3>
+                </div>
+                <span hx-trigger="load, update-issues-count from:body" hx-get="/issues/gitlab/total?state=opened"> </span>
+            </div>
+            <div class="nav-item-container <%= activeItem === 'closed' ? 'active' : '' %>">
+                <div class="nav-item" hx-get="?state=closed" hx-target="#content-container" hx-swap="outerHTML">
+                    <h3>Closed</h3>
+                </div>
+                <span hx-trigger="load, update-issues-count from:body" hx-get="/issues/gitlab/total?state=closed"> </span>
+            </div>
+            <div class="nav-item-container <%= activeItem === 'all' ? 'active' : '' %>">
+                <div class="nav-item"  hx-get="all" hx-target="#content-container" hx-swap="outerHTML">
+                    <h3>All</h3>
+                </div>
+                <span hx-trigger="load, update-issues-count from:body" hx-get="/issues/gitlab/total"> </span>
+            </div>
+        <% } else if (title === "Merge Requests") { %>
+            <div class="nav-item-container <%= activeItem === 'opened' ? 'active' : '' %>">
+                <div class="nav-item"  hx-get="?state=opened" hx-target="#content-container" hx-swap="outerHTML">
+                    <h3>Open</h3>
+                </div>
+                <span hx-trigger="load, update-merge-requests-count from:body" hx-get="/merge_requests/gitlab/total?state=opened"></span>
+            </div>
+            <div class="nav-item-container <%= activeItem === 'closed' ? 'active' : '' %>">
+                <div class="nav-item"  hx-get="?state=closed" hx-target="#content-container" hx-swap="outerHTML">
+                    <h3>Closed</h3>
+                </div>
+                <span hx-trigger="load, update-merge-requests-count from:body" hx-get="/merge_requests/gitlab/total?state=closed"></span>
+            </div>
+            <div class="nav-item-container <%= activeItem === 'merged' ? 'active' : '' %>">
+                <div class="nav-item"  hx-get="?state=merged" hx-target="#content-container" hx-swap="outerHTML">
+                    <h3>Merged</h3>
+                </div>
+                <span hx-trigger="load, update-merge-requests-count from:body" hx-get="/merge_requests/gitlab/total?state=merged"></span>
+            </div>
+            <div class="nav-item-container <%= activeItem === 'all' ? 'active' : '' %>">
+                <div class="nav-item"  hx-get="all" hx-target="#content-container" hx-swap="outerHTML">
+                    <h3>All</h3>
+                </div>
+                <span hx-trigger="load, update-merge-requests-count from:body" hx-get="/merge_requests/gitlab/total"></span>
+            </div>
+        <% } else if (title === "Merge Reviews") { %>
+                <div class="nav-item-container <%= activeItem === 'opened' ? 'active' : '' %>">
+                    <div class="nav-item"  hx-get="?state=opened" hx-target="#content-container" hx-swap="outerHTML">
+                        <h3>Open</h3>
+                    </div>
+                    <span hx-trigger="load, update-merge-requests-count from:body" hx-get="/merge_reviews/gitlab/total?state=opened"></span>
+                </div>
+                <div class="nav-item-container <%= activeItem === 'closed' ? 'active' : '' %>">
+                    <div class="nav-item"  hx-get="?state=closed" hx-target="#content-container" hx-swap="outerHTML">
+                        <h3>Closed</h3>
+                    </div>
+                    <span hx-trigger="load, update-merge-requests-count from:body" hx-get="/merge_reviews/gitlab/total?state=closed"></span>
+                </div>
+                <div class="nav-item-container <%= activeItem === 'merged' ? 'active' : '' %>">
+                    <div class="nav-item"  hx-get="?state=merged" hx-target="#content-container" hx-swap="outerHTML">
+                        <h3>Merged</h3>
+                    </div>
+                    <span hx-trigger="load, update-merge-requests-count from:body" hx-get="/merge_reviews/gitlab/total?state=merged"></span>
+                </div>
+                <div class="nav-item-container <%= activeItem === 'all' ? 'active' : '' %>">
+                    <div class="nav-item"  hx-get="all" hx-target="#content-container" hx-swap="outerHTML">
+                        <h3>All</h3>
+                    </div>
+                    <span hx-trigger="load, update-merge-requests-count from:body" hx-get="/merge_reviews/gitlab/total"></span>
+                </div>
+        <% } %>
+    </nav>
+</div>

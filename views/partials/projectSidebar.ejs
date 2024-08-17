@@ -1,0 +1,42 @@
+<div class="sidebar">
+    <div class="top">
+        <div class="logo">
+            <img src="/img/foxlogo.png" alt="logo">
+            <div class="logo-name">GitHook</div>
+        </div>
+    </div>
+    <div class="nav-Items">
+        <div>
+            <a href="/projects/gitlab/all?render=full" class="projects <%= (title === 'Projects' || title === 'Project')? 'active' : '' %>">
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M400-400h160v-80H400v80Zm0-120h320v-80H400v80Zm0-120h320v-80H400v80Zm-80 400q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z"/></svg>
+            </span>
+                <h3>Projects</h3>
+            </a>
+        </div>
+        <div>
+            <a href="/projects/gitlab/<%= project.id %>/readme?name=<%= project.name %>" class="projects <%= (title === 'Projects' || title === 'Project')? 'active' : '' %>">
+                <h2><%= project.name %></h2>
+            </a>
+
+            <a href="/issues/gitlab/project/<%= project.id %>?name=<%= project.name %>&state=opened&render=full" class="issues <%= (title === 'Issues' || title === 'Issue') ? 'active' : '' %>">
+              -
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M280-160v-441q0-33 24-56t57-23h439q33 0 56.5 23.5T880-600v320L680-80H360q-33 0-56.5-23.5T280-160ZM81-710q-6-33 13-59.5t52-32.5l434-77q33-6 59.5 13t32.5 52l10 54h-82l-7-40-433 77 40 226v279q-16-9-27.5-24T158-276L81-710Zm279 110v440h280v-160h160v-280H360Zm220 220Z"/></svg>
+                </span>
+                <h3>Issues</h3>
+                <div id="update-issues-count" hx-trigger="load, update-issues-count from:body" hx-get="/issues/gitlab/project/<%= project.id %>/total?state=opened" ></div>
+            </a>
+
+            <a href="/merge_requests/gitlab/project/<%= project.id %>?name=<%= project.name %>&state=opened&render=full" class="merge-requests <%= (title === 'Merge Requests' || title === 'Merge Request') ? 'active' : '' %>">
+                -
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m430-30-56-57 73-73H313q-13 35-43.5 57.5T200-80q-50 0-85-35t-35-85q0-39 22.5-69.5T160-313v-334q-35-13-57.5-43.5T80-760q0-50 35-85t85-35q39 0 69.5 22.5T313-800h134l-73-73 56-57 170 170-170 170-56-57 73-73H313q-9 26-28 45t-45 28v334q26 9 45 28t28 45h134l-73-73 56-57 170 170L430-30Zm330-50q-50 0-85-35t-35-85q0-40 22.5-70.5T720-313v-334q-35-12-57.5-42.5T640-760q0-50 35-85t85-35q50 0 85 35t35 85q0 40-22.5 70.5T800-647v334q35 13 57.5 43.5T880-200q0 50-35 85t-85 35Zm-560-80q17 0 28.5-11.5T240-200q0-17-11.5-28.5T200-240q-17 0-28.5 11.5T160-200q0 17 11.5 28.5T200-160Zm560 0q17 0 28.5-11.5T800-200q0-17-11.5-28.5T760-240q-17 0-28.5 11.5T720-200q0 17 11.5 28.5T760-160ZM200-720q17 0 28.5-11.5T240-760q0-17-11.5-28.5T200-800q-17 0-28.5 11.5T160-760q0 17 11.5 28.5T200-720Zm560 0q17 0 28.5-11.5T800-760q0-17-11.5-28.5T760-800q-17 0-28.5 11.5T720-760q0 17 11.5 28.5T760-720ZM200-200Zm560 0ZM200-760Zm560 0Z"/></svg>
+                </span>
+                <h3>Merge Requests</h3>
+                <div id="update-merge-requests-count" hx-trigger="load, update-merge-requests-count from:body" hx-get="/merge_requests/gitlab/project/<%= project.id %>/total?state=opened" ></div>
+            </a>
+        </div>
+    </div>
+    <script src="/js/wsevent-trigger.js"></script>
+</div>

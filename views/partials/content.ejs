@@ -1,0 +1,14 @@
+<div class="content-container" id="content-container">
+    <div class="content-title"><%= title %></div>
+    <% if (["Projects", "Issues", "Merge Requests", "Merge Reviews"].includes(title)) { %>
+        <% if (selectedProject) { %>
+            <%- include('../partials/projectTopArea.ejs', { title, activeItem, project : selectedProject}) %>
+        <% } else { %>
+                <%- include('../partials/toparea.ejs', { title, activeItem }) %>
+        <% } %>
+        <%- include('../partials/searchbar.ejs', {state}) %>
+    <% } %>
+    <div class="content" id="content">
+        <%- include(contentType, {content}) %>
+    </div>
+</div>

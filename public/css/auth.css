@@ -1,0 +1,66 @@
+.container {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+}
+
+.box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: 20px;
+    text-align: left;
+}
+
+.image-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.image-row img, svg {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin-left: 0.5rem;
+    width: 12rem;
+}
+
+.cancel {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.authenticate {
+    background-color: #2ecc71;
+    color: white;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    font-size: 10px;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+    font-weight: 100;
+}

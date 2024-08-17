@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/css/bundle.style1.min.css"/>
+</head>
+<body>
+
+<div class="container">
+    <aside>
+        <% if (selectedProject) { %>
+            <%- include('../partials/projectSidebar.ejs', { project: selectedProject }) %>
+        <% } else { %>
+            <%- include('../partials/sidebar.ejs') %>
+        <% } %>
+    </aside>
+
+
+
+    <main class="content-section">
+        <%- include('../partials/content.ejs', {contentType, content, title, activeItem, displayName, state, selectedProject}) %>
+    </main>
+
+    <div class="right">
+        <div class="top">
+            <button class="" id="menu-btn">
+                <span class="material-symbols-outlined"></span>
+            </button>
+            <div class="profile">
+                <div class="user-info">
+                    <p>Hey, <b class="usr-name"><%= displayName %></b></p>
+                </div>
+                <div class="user-avatar">
+                    <img class="usr-img" src="<%= avatarUrl %>" alt="User Avatar">
+                </div>
+            </div>
+        </div>
+        <%- include('../partials/recentUpdates.ejs') %>
+    </div>
+</div>
+<script src="/js/htmx.min.js"></script>
+<script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/ws.js"></script>
+</body>
+</html>

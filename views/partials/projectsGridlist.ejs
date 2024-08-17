@@ -1,0 +1,74 @@
+<link rel="stylesheet" type="text/css" href="/css/bundle.style2.min.css" />
+<div class="list" id="grid-list" >
+        <ul class="grid">
+            <% content.projects.forEach(project => { %>
+                <li class="row">
+                    <% if (project.imageUrl) { %>
+                        <img class="project-img" src="<%= project.imageUrl %>" alt="A" >
+                    <% } else { %>
+                        <div class="project-img"><%= project.name.charAt(0) %></div>
+                    <% } %>
+                    <div class="column">
+                        <a href="<%= project.id %>/readme?name=<%= project.name %>" class="name"
+                        ><%= project.nameWithNamespace %></a>
+                        <div class="main-info">
+                            <div class="meta-info stars">
+                                <span class="info"><%= project.starCount %></span>
+                                <span> <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="m352-293 128-76 129 76-34-144 111-95-147-13-59-137-59 137-147 13 112 95-34 144ZM243-144l63-266L96-589l276-24 108-251 108 252 276 23-210 179 63 266-237-141-237 141Zm237-333Z"/></svg>
+                                </span>
+                            </div>
+                            <div class="meta-info forks">
+                                <span class="info"><%= project.forkCount %></span>
+                                <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M227.78-96Q173-96 134.5-134.72T96-228.22q0-54.78 38.66-93.28 38.67-38.5 93.37-38.5 16.97 0 33.28 4.5Q277.61-351 292-343l152-152.42V-605q-42.24-12.32-69.12-46.92-26.88-34.6-26.88-80.1 0-54.98 38.72-93.48 38.72-38.5 93.5-38.5t93.28 38.6q38.5 38.6 38.5 93.21 0 45.19-26.88 79.99T516-605v109.55L667.71-343q14.78-8 31.04-12.5Q715-360 731.97-360q54.7 0 93.37 38.72Q864-282.56 864-227.78t-38.72 93.28Q786.56-96 731.78-96t-93.28-38.66Q600-173.33 600-228.03q0-16.97 4.5-33.28Q609-277.61 617-292L480-429 343-292q8 14.28 12.5 30.46 4.5 16.19 4.5 33.32 0 55.22-38.72 93.72T227.78-96ZM732-168q25 0 42.5-17.5T792-228q0-25-17.5-42.5T732-288q-25 0-42.5 17.5T672-228q0 25 17.5 42.5T732-168ZM480-672q25 0 42.5-17.5T540-732q0-25-17.5-42.5T480-792q-25 0-42.5 17.5T420-732q0 25 17.5 42.5T480-672ZM228-168q25 0 42.5-17.5T288-228q0-25-17.5-42.5T228-288q-25 0-42.5 17.5T168-228q0 25 17.5 42.5T228-168Z"/></svg>
+                                </span>
+                            </div>
+                            <div class="meta-info merge-request">
+                                <div hx-trigger="load, update-merge-requests-count from:body" hx-get="/merge_requests/gitlab/project/<%=project.id%>/total"></div>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="m430-30-56-57 73-73H313q-13 35-43.5 57.5T200-80q-50 0-85-35t-35-85q0-39 22.5-69.5T160-313v-334q-35-13-57.5-43.5T80-760q0-50 35-85t85-35q39 0 69.5 22.5T313-800h134l-73-73 56-57 170 170-170 170-56-57 73-73H313q-9 26-28 45t-45 28v334q26 9 45 28t28 45h134l-73-73 56-57 170 170L430-30Zm330-50q-50 0-85-35t-35-85q0-40 22.5-70.5T720-313v-334q-35-12-57.5-42.5T640-760q0-50 35-85t85-35q50 0 85 35t35 85q0 40-22.5 70.5T800-647v334q35 13 57.5 43.5T880-200q0 50-35 85t-85 35Zm-560-80q17 0 28.5-11.5T240-200q0-17-11.5-28.5T200-240q-17 0-28.5 11.5T160-200q0 17 11.5 28.5T200-160Zm560 0q17 0 28.5-11.5T800-200q0-17-11.5-28.5T760-240q-17 0-28.5 11.5T720-200q0 17 11.5 28.5T760-160ZM200-720q17 0 28.5-11.5T240-760q0-17-11.5-28.5T200-800q-17 0-28.5 11.5T160-760q0 17 11.5 28.5T200-720Zm560 0q17 0 28.5-11.5T800-760q0-17-11.5-28.5T760-800q-17 0-28.5 11.5T720-760q0 17 11.5 28.5T760-720ZM200-200Zm560 0ZM200-760Zm560 0Z"/></svg>
+                                </span>
+                            </div>
+                            <div class="meta-info open-issues">
+                                <div hx-trigger="load, update-issues-count from:body" hx-get="/issues/gitlab/project/<%=project.id%>/total?state=opened"></div>
+                                <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M280-160v-441q0-33 24-56t57-23h439q33 0 56.5 23.5T880-600v320L680-80H360q-33 0-56.5-23.5T280-160ZM81-710q-6-33 13-59.5t52-32.5l434-77q33-6 59.5 13t32.5 52l10 54h-82l-7-40-433 77 40 226v279q-16-9-27.5-24T158-276L81-710Zm279 110v440h280v-160h160v-280H360Zm220 220Z"/></svg>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="visibility">
+                            <% if (project.visibility === 'private') { %>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#000000"><path d="M263.72-96Q234-96 213-117.15T192-168v-384q0-29.7 21.15-50.85Q234.3-624 264-624h24v-96q0-79.68 56.23-135.84 56.22-56.16 136-56.16Q560-912 616-855.84q56 56.16 56 135.84v96h24q29.7 0 50.85 21.15Q768-581.7 768-552v384q0 29.7-21.16 50.85Q725.68-96 695.96-96H263.72Zm.28-72h432v-384H264v384Zm216.21-120Q510-288 531-309.21t21-51Q552-390 530.79-411t-51-21Q450-432 429-410.79t-21 51Q408-330 429.21-309t51 21ZM360-624h240v-96q0-50-35-85t-85-35q-50 0-85 35t-35 85v96Zm-96 456v-384 384Z"/></svg>
+                                </span>
+                            <% } else { %>
+
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <span class="role"><%= project.role %></span>
+                    </div>
+                        <% if (project.role === 'Maintainer' || project.role === 'Owner') { %>
+                        <div class="column">
+                            <div class="column webhook-toggle">
+                                <label class="switch" title="Get live updates for this project">
+                                    <input type="checkbox" id="webhook-toggle-<%= project.id %>"
+                                           hx-get="/webhooks/gitlab/<%= project.id %>/create"
+                                           hx-trigger="change"
+                                           hx-swap="outerHTML"
+                                           hx-target="#webhook-toggle-<%= project.id %>">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <% } %>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+<script src="/js/webhooks-toggles.min.js"></script>
+<%- include('../partials/pagination.ejs', {content, state}) %>

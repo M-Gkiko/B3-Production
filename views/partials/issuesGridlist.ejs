@@ -1,0 +1,45 @@
+<link rel="stylesheet" type="text/css" href="/css/bundle.style2.min.css" />
+    <div class="list" id="grid-list" >
+        <ul class="grid" id="grid">
+            <% content.issues.forEach(issue => { %>
+                <li class="row">
+                    <div class="column">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M280-160v-441q0-33 24-56t57-23h439q33 0 56.5 23.5T880-600v320L680-80H360q-33 0-56.5-23.5T280-160ZM81-710q-6-33 13-59.5t52-32.5l434-77q33-6 59.5 13t32.5 52l10 54h-82l-7-40-433 77 40 226v279q-16-9-27.5-24T158-276L81-710Zm279 110v440h280v-160h160v-280H360Zm220 220Z"/></svg>
+                    </div>
+                    </div>
+                    <div class="column main">
+                        <div class="issue-name">
+                            <a href="/issues/gitlab/project/<%= issue.projectId %>/issue/<%= issue.id %>"><h3><%= issue.title %></h3></a>
+                        </div>
+                        <div class="main-info">
+                            <div class="references"><%= issue.references %></div>
+                            <time class="timestamp"><%= issue.createdAt %></time>
+                            <div class="usr-name"><%= issue.name %></div>
+                        </div>
+                        <div class="issue-label">
+                            <% if (issue.labels && issue.labels.length > 0) { %>
+                                <% issue.labels.forEach(label => { %>
+                                    <span class="label" style="background-color: <%= label.color %>; color: <%= label.text_color %>;"><%= label.name %></span>
+                                <% }) %>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="column meta">
+                        <div class="meta-info state">
+                            <span class="state <%= issue.state %>"><%= issue.state %></span>
+                        </div>
+                            <div class="meta-info notes-count">
+                                <span class="info"><%= issue.noteCount %></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M360-240q-30 0-51-21t-21-51v-48h456v-312h48q30 0 51 21t21 51v504L720-240H360ZM96-288v-504q0-30 21-51t51-21h432q30 0 51 21t21 51v288q0 30-21 51t-51 21H240L96-288Zm504-216v-288H168v288h432Zm-432 0v-288 288Z"/></svg>
+                            </div>
+                           <div class="meta-info left-end merge-requests">
+                            <span class="info"><%= issue.mergeRequestsCount %></span>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="m430-30-56-57 73-73H313q-13 35-43.5 57.5T200-80q-50 0-85-35t-35-85q0-39 22.5-69.5T160-313v-334q-35-13-57.5-43.5T80-760q0-50 35-85t85-35q39 0 69.5 22.5T313-800h134l-73-73 56-57 170 170-170 170-56-57 73-73H313q-9 26-28 45t-45 28v334q26 9 45 28t28 45h134l-73-73 56-57 170 170L430-30Zm330-50q-50 0-85-35t-35-85q0-40 22.5-70.5T720-313v-334q-35-12-57.5-42.5T640-760q0-50 35-85t85-35q50 0 85 35t35 85q0 40-22.5 70.5T800-647v334q35 13 57.5 43.5T880-200q0 50-35 85t-85 35Zm-560-80q17 0 28.5-11.5T240-200q0-17-11.5-28.5T200-240q-17 0-28.5 11.5T160-200q0 17 11.5 28.5T200-160Zm560 0q17 0 28.5-11.5T800-200q0-17-11.5-28.5T760-240q-17 0-28.5 11.5T720-200q0 17 11.5 28.5T760-160ZM200-720q17 0 28.5-11.5T240-760q0-17-11.5-28.5T200-800q-17 0-28.5 11.5T160-760q0 17 11.5 28.5T200-720Zm560 0q17 0 28.5-11.5T800-760q0-17-11.5-28.5T760-800q-17 0-28.5 11.5T720-760q0 17 11.5 28.5T760-720ZM200-200Zm560 0ZM200-760Zm560 0Z"/></svg>
+                         </div>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+    <%- include('../partials/pagination.ejs', {content, state}) %>
