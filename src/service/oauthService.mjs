@@ -4,7 +4,7 @@ import {config} from "dotenv";
 
 config()
 
-const { PORT, GITLAB_APP_ID, GITLAB_APP_SECRET } = process.env;
+const { PORT, GITLAB_APP_ID, GITLAB_APP_SECRET, GITLAB_CALLBACK_URL, GITLAB_BASE_URL } = process.env;
 export let loggedUserDisplayName = ''
 export let loggedUserId = ''
 
@@ -14,13 +14,13 @@ passport.use(
         {
             clientID: GITLAB_APP_ID,
             clientSecret: GITLAB_APP_SECRET,
-            callbackURL: "http://localhost:8000/auth/gitlab/callback",
-            baseURL: "https://gitlab.lnu.se/",
+            callbackURL: GITLAB_CALLBACK_URL,
+            baseURL: GITLAB_BASE_URL,
         },
         async function (accessToken, refreshToken, profile, cb) {
 
             profile.gitlabAccessToken = accessToken;
-            profile.baseURL = "https://gitlab.lnu.se/";
+            profile.baseURL = GITLAB_BASE_URL
             loggedUserId = profile.id
             loggedUserDisplayName = profile.displayName;
 

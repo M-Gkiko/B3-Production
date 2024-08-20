@@ -55,7 +55,11 @@
         </div>
         <div class="button-container">
             <button id="comment-button" type="submit">Comment</button>
-            <button id="close-issue-button" hx-put="<%= content.issue.id %>?state=close" hx-trigger="click">Close Issue</button>
+            <button id="close-issue-button"
+        hx-put="<%= content.issue.id %>?state=<%= content.issue.state === 'opened' ? 'close' : 'reopen' %>"
+        hx-trigger="click">
+    <%= content.issue.state === 'opened' ? 'Close Issue' : 'Reopen Issue' %>
+</button>
         </div>
     </form>
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>

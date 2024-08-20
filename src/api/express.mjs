@@ -1,5 +1,7 @@
 import express from 'express';
 import session from 'express-session';
+import MongoStore from 'connect-mongo';
+import mongoose from 'mongoose';
 import helmet from 'helmet';
 import cors from 'cors';
 import compression from 'compression';
@@ -29,24 +31,39 @@ const { PORT } = process.env;
 const app = express();
 expressWebsocket(app);
 
+const { MONGO_URI } = process.env;
+
+mongoose.connect(MONGO_URI)
+    .then(() => {
+        console.log('Connected to MongoDB');
+    })
+    .catch((err) => {
+        console.error('Failed to connect to MongoDB', err);
+    });
+
 const publicPath = path.join(__root, 'public')
 app.use(express.static(publicPath))
 const viewsPath = path.join(__root, 'views')
 app.set('views', viewsPath)
 app.set('view engine', 'ejs')
 
-app.use(logger('dev'));
+app.use(logger('combined'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
-    secret: '1AguBDLOS!2%$&K;L)*&',
+    secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URI,
+        collectionName: 'sessions', 
+    }),
     cookie: {
-        secure: false,
+        secure: false, 
         httpOnly: false,
+        maxAge: 1000 * 60 * 60 * 24,
         Partitioned: true,
     },
 }));
@@ -131,7 +148,7 @@ app.ws('/issues/:id', (ws, req) => {
 
     console.log(`WebSocket connection established for issue notes: Issue ID = ${id}`);
 
-    // Ensure there is an entry in the map for this issue_id
+    
     if (!issueClients.has(id)) {
         issueClients.set(id, []);
     }
@@ -140,7 +157,6 @@ app.ws('/issues/:id', (ws, req) => {
     clients.push(ws);
 
 
-    // Handle WebSocket connection closure
     ws.on('close', () => {
         console.log(`WebSocket connection closed for issue notes: Issue ID = ${id}`);
         const clients = issueClients.get(id) || [];
@@ -152,7 +168,7 @@ app.ws('/issues/:id', (ws, req) => {
         }
     });
 
-    // Handle WebSocket errors
+    
     ws.on('error', (error) => {
         console.error('WebSocket error:', error);
     });

@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.mjs",
   "scripts": {
-    "devStart": "node bundle-css.js && npx nodemon app.mjs",
-    "start": "npx nodemon app.mjs",
+    "devStart": "NODE_ENV=development node bundle-css.js && npx nodemon app.mjs",
+    "start": "NODE_ENV=production node app.mjs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "htmlhint": "npx htmlhint ./public || exit 0",
     "stylelint": "npx stylelint \"./public/**/*.css\" || exit 0",
@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "compression": "^1.7.4",
+    "connect-mongo": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
@@ -46,6 +47,7 @@
     "express-ws": "^5.0.2",
     "helmet": "^7.0.0",
     "isomorphic-dompurify": "^2.11.0",
+    "mongoose": "^8.5.3",
     "morgan": "^1.10.0",
     "passport": "^0.7.0",
     "passport-gitlab2": "^5.0.0",

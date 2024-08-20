@@ -238,6 +238,8 @@ router.put("/gitlab/project/:project_id/issue/:issue_id", isLoggedIn, sanitizeBo
         const issueState = req.query.state;
         const URL = req.user.baseURL + GitlabURLs.ISSUE_STATE(projectID,issueID,issueState);
         await changeIssueState(accessToken, URL);
+        res.set('HX-Redirect', `/issues/gitlab/project/${projectID}/issue/${issueID}`);
+        res.status(204).end(); 
     } catch (error) {
         next(error);
     }

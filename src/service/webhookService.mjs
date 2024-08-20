@@ -6,7 +6,7 @@ import {config} from "dotenv";
 
 config()
 
-const {GITLAB_WEBHOOK_SECRET } = process.env;
+const {GITLAB_WEBHOOK_SECRET, GITLAB_WEBHOOK_URL, GITLAB_WEBHOOK_URL_NOTES } = process.env;
 
 
 export async function createWebhook(accessToken, URL) {
@@ -19,7 +19,7 @@ export async function createWebhook(accessToken, URL) {
     try {
         const { data: existingWebhooks } = await api(accessToken, URL, httpMethods.GET);
 
-        const webhookUrl = 'https://hkdk.events/etibtezsc6k9x9';
+        const webhookUrl = GITLAB_WEBHOOK_URL;
 
         const webhookExists = existingWebhooks.some(hook => hook.url === webhookUrl);
 
@@ -53,7 +53,7 @@ export async function createWebhookNotes(accessToken, URL) {
     try {
         const { data: existingWebhooks } = await api(accessToken, URL, httpMethods.GET);
 
-        const webhookUrl = 'https://hkdk.events/etibtezsc6k9x9/notes'; // Replace with your webhook URL
+        const webhookUrl = GITLAB_WEBHOOK_URL_NOTES; 
 
         const webhookExists = existingWebhooks.some(hook => hook.url === webhookUrl);
 
